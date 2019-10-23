@@ -21,7 +21,7 @@ module.exports = {
   addCoffeePods: async request => {
     try {
       let requestBody = request.body;
-      let newPod = {_id: uuid()};
+      let newPod = { _id: uuid() };
       requestBody.product_type ? newPod.product_type = requestBody.product_type : '';
       requestBody.coffee_flavor ? newPod.coffee_flavor = requestBody.coffee_flavor : '';
       requestBody.pack_size ? newPod.pack_size = requestBody.pack_size * 12 : '';
