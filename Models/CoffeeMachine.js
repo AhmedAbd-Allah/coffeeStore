@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const uuid = require('uuidv4');
 
 const machineSchema = new Schema({
     _id: {
         type: String,
-        default: uuid()
     },
     product_type: {
         type: String,

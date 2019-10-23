@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const uuid = require('uuidv4');
 
 const podSchema = new Schema({
     _id: {
         type: String,
-        default: uuid()
     },
     product_type: {
         type: String,
@@ -14,7 +12,7 @@ const podSchema = new Schema({
         type: String,
     },
     pack_size: {
-        type: String,
+        type: Number,
     }
 }, { timestamps: true });
 

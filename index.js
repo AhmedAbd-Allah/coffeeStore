@@ -6,12 +6,15 @@ const expressSanitizer = require('express-sanitizer');
 const dbURI = process.env.MONGO_URI ? process.env.MONGO_URI : Config.MONGO_URI;
 const machinesController = require('./Controllers/CoffeeMachinesController');
 const podsController = require('./Controllers/CoffeePodsController');
+const mongoose = require('mongoose')
 
 // Start database connection
-mongoose.connect(dbURI, { useNewUrlParser: true }, function (err, data) {
-  if (err)
-    console.log(err)
-});
+mongoose.connect(dbURI,
+  { useNewUrlParser: true, useUnifiedTopology: true }
+  , function (err, data) {
+    if (err)
+      console.log(err)
+  });
 
 // sanitize the request
 app.use(expressSanitizer());
@@ -33,8 +36,11 @@ app.use(function (req, res, next) {
 
 
 // Router
-app.get('/machines',machinesController.getCoffeeMachines)
-app.get('/pods',podsController.getCoffeePods)
+app.post('/machines', machinesController.addCoffeeMachines)
+app.post('/pods', podsController.addCoffeePods)
+
+app.get('/machines', machinesController.getCoffeeMachines)
+app.get('/pods', podsController.getCoffeePods)
 
 // server up
 app.listen(Config.port, () => {
